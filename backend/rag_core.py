@@ -43,8 +43,20 @@ class RAGCore:
         self.doc_id = str(uuid.uuid4())
         
         # 1. Load PDF
+        print(f"Loading PDF from: {file_path}")
         loader = PyPDFLoader(file_path)
         docs = loader.load()
+        print(f"Loaded {len(docs)} pages from PDF")
+        
+        # Check if any content was extracted
+        if not docs:
+            raise ValueError("No pages found in PDF document")
+        
+        total_content = "".join([doc.page_content for doc in docs])
+        print(f"Total content length: {len(total_content)} characters")
+        
+        if len(total_content.strip()) == 0:
+            raise ValueError("PDF document appears to be empty or contains no extractable text")
         
         # 2. Split
         text_splitter = RecursiveCharacterTextSplitter(
@@ -53,6 +65,10 @@ class RAGCore:
             add_start_index=True
         )
         splits = text_splitter.split_documents(docs)
+        print(f"Split into {len(splits)} chunks")
+        
+        if not splits:
+            raise ValueError("No text chunks created from PDF. Document may be empty or unreadable.")
         
         # Add metadata to all splits
         self.chunks = []
@@ -64,22 +80,30 @@ class RAGCore:
             self.chunks.append(split)
             self.chunk_map[chunk_id] = split
             
+        print(f"Created {len(self.chunks)} chunks with metadata")
+        
         # 3. Vector Index (Chroma)
         # We start a fresh collection for each upload in this simple benchmark
+        print("Creating vector store...")
         self.vector_store = Chroma.from_documents(
             documents=self.chunks,
             embedding=self.embeddings,
             collection_name=f"collection_{self.doc_id}",
             persist_directory=self.persist_directory
         )
+        print("Vector store created successfully")
         
         # 4. Keyword Index (BM25)
         # Tokenize for BM25
+        print("Creating BM25 index...")
         tokenized_corpus = [doc.page_content.lower().split() for doc in self.chunks]
         self.bm25_index = BM25Okapi(tokenized_corpus)
+        print("BM25 index created successfully")
         
         # 5. Initialize Agent with tools
+        print("Initializing agent...")
         self._initialize_agent()
+        print("Agent initialized successfully")
         
         return self.doc_id
 

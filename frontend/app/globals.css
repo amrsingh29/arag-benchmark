@@ -14,19 +14,69 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/10 shadow-xl;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
   
   .glass-card {
-    @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/15;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  
+  .glass-card:hover {
+    background-color: rgba(255, 255, 255, 0.15);
   }
   
   .glass-input {
-    @apply glass rounded-xl px-4 py-3 outline-none focus:border-purple-400/50 focus:bg-white/20 transition-all placeholder-white/30;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: all 0.3s;
+  }
+  
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .glass-input:focus {
+    border-color: rgba(168, 85, 247, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
   }
   
   .glass-btn {
-    @apply glass rounded-xl px-6 py-3 font-semibold hover:bg-white/20 active:scale-95 transition-all text-white disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s;
+  }
+  
+  .glass-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-btn:active {
+    transform: scale(0.95);
+  }
+  
+  .glass-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 

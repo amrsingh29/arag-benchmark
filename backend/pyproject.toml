@@ -1,0 +1,26 @@
+[project]
+name = "arag-benchmark-backend"
+version = "0.1.0"
+description = "Backend API for A-RAG Benchmark comparing Standard RAG vs Agentic RAG"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "langchain",
+    "langchain-community",
+    "langchain-openai",
+    "chromadb",
+    "pypdf",
+    "rank_bm25",
+    "python-multipart",
+    "openai",
+    "tiktoken",
+    "langchain-chroma",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []

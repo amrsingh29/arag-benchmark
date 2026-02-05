@@ -20,7 +20,7 @@ export default function ChatInterface({ docId }: ChatInterfaceProps) {
         setResult(null);
 
         try {
-            const response = await fetch("http://localhost:8000/compare", {
+            const response = await fetch("http://localhost:8080/compare", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ query, doc_id: docId }),
