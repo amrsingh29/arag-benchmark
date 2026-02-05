@@ -1,5 +1,4 @@
-# A-RAG Benchmark
-
+# Agentic RAG Vs Standard RAG Benchmark
 
 A benchmark application comparing Standard RAG vs Agentic RAG (A-RAG) approaches for document retrieval and question answering.
 
@@ -9,6 +8,8 @@ This application demonstrates the difference between two RAG (Retrieval-Augmente
 
 - **Standard RAG**: Traditional approach with fixed retrieval strategy (retrieve top-K documents → generate answer)
 - **Agentic RAG (A-RAG)**: Advanced approach where an AI agent autonomously decides how to retrieve information using multiple tools and strategies
+
+![alt text](image.png)
 
 Upload a PDF document and ask questions to see both approaches side-by-side, comparing their reasoning processes, retrieval strategies, and answer quality.
 
